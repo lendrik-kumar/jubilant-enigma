@@ -1,10 +1,10 @@
-import React from 'react';
-import Navbar from '../components/navbar';
-import Hero from '../components/Hero';
-import Highlights from '../components/Highlights';
-import FeaturedProducts from '../components/FeaturedProducts';
-import Newsletter from '../components/Newsletter';
-import Footer from '../components/Footer';
+import React from "react";
+import Navbar from "../components/navbar";
+import Hero from "../components/Hero";
+import Highlights from "../components/Highlights";
+import FeaturedProducts from "../components/FeaturedProducts";
+import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
 
 /**
  * HomePage Component

@@ -1,5 +1,5 @@
-import React from 'react';
-import ProductCard from './ProductCard';
+import React from "react";
+import ProductCard from "./ProductCard";
 
 /**
  * ProductGrid Component
@@ -11,7 +11,7 @@ const ProductGrid = ({
   error = null,
   columns = 4,
   emptyMessage = "No products found",
-  className = ""
+  className = "",
 }) => {
   // Loading skeleton
   if (loading) {
@@ -29,11 +29,23 @@ const ProductGrid = ({
     return (
       <div className="flex flex-col items-center justify-center py-20 px-4">
         <div className="text-red-500 mb-4">
-          <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          <svg
+            className="w-16 h-16"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">Something went wrong</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          Something went wrong
+        </h3>
         <p className="text-gray-600 text-center">{error}</p>
       </div>
     );
@@ -44,12 +56,26 @@ const ProductGrid = ({
     return (
       <div className="flex flex-col items-center justify-center py-20 px-4">
         <div className="text-gray-400 mb-4">
-          <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          <svg
+            className="w-16 h-16"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+            />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">{emptyMessage}</h3>
-        <p className="text-gray-600 text-center">Try adjusting your filters or search terms</p>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          {emptyMessage}
+        </h3>
+        <p className="text-gray-600 text-center">
+          Try adjusting your filters or search terms
+        </p>
       </div>
     );
   }
@@ -66,11 +92,11 @@ const ProductGrid = ({
 // Get Tailwind grid columns class
 function getGridCols(columns) {
   const colsMap = {
-    1: 'grid-cols-1',
-    2: 'grid-cols-1 sm:grid-cols-2',
-    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
-    5: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
+    1: "grid-cols-1",
+    2: "grid-cols-1 sm:grid-cols-2",
+    3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+    4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+    5: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5",
   };
   return colsMap[columns] || colsMap[4];
 }

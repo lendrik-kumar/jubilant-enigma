@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from '../hooks/useRouter.jsx';
-import { Star, Heart } from 'lucide-react';
+import React from "react";
+import { Link } from "../hooks/useRouter.jsx";
+import { Star, Heart } from "lucide-react";
 
 /**
  * ProductCard Component
@@ -21,9 +21,11 @@ const ProductCard = ({
   isBestseller,
   inStock,
   colors = [],
-  className = ""
+  className = "",
 }) => {
-  const discount = originalPrice ? Math.round((1 - price / originalPrice) * 100) : null;
+  const discount = originalPrice
+    ? Math.round((1 - price / originalPrice) * 100)
+    : null;
   const [isHovered, setIsHovered] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
 
@@ -48,17 +50,19 @@ const ProductCard = ({
             src={thumbnail}
             alt={name}
             className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${
-              isHovered && images.length > 1 ? 'opacity-0 scale-105' : 'opacity-100'
+              isHovered && images.length > 1
+                ? "opacity-0 scale-105"
+                : "opacity-100"
             }`}
           />
-          
+
           {/* Hover Image */}
           {images.length > 1 && (
             <img
               src={images[1]}
               alt={`${name} alternate view`}
               className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${
-                isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                isHovered ? "opacity-100 scale-100" : "opacity-0 scale-105"
               }`}
             />
           )}
@@ -86,13 +90,15 @@ const ProductCard = ({
           <button
             onClick={handleFavoriteClick}
             className={`absolute top-3 right-3 p-2 rounded-full bg-white/90 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:scale-110 ${
-              isHovered || isFavorite ? 'opacity-100' : 'opacity-0'
+              isHovered || isFavorite ? "opacity-100" : "opacity-0"
             }`}
-            aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            aria-label={
+              isFavorite ? "Remove from favorites" : "Add to favorites"
+            }
           >
             <Heart
               className={`h-5 w-5 transition-colors ${
-                isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-700'
+                isFavorite ? "fill-red-500 text-red-500" : "text-gray-700"
               }`}
             />
           </button>
@@ -109,7 +115,9 @@ const ProductCard = ({
           {/* Quick View - Shows on Hover */}
           <div
             className={`absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent transition-all duration-300 ${
-              isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              isHovered
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
             }`}
           >
             <span className="text-white text-sm font-medium">Quick View</span>
@@ -149,8 +157,8 @@ const ProductCard = ({
                     key={i}
                     className={`h-3.5 w-3.5 ${
                       i < Math.floor(rating)
-                        ? 'fill-yellow-400 text-yellow-400'
-                        : 'fill-gray-200 text-gray-200'
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "fill-gray-200 text-gray-200"
                     }`}
                   />
                 ))}
@@ -173,7 +181,9 @@ const ProductCard = ({
                 />
               ))}
               {colors.length > 4 && (
-                <span className="text-xs text-gray-500">+{colors.length - 4}</span>
+                <span className="text-xs text-gray-500">
+                  +{colors.length - 4}
+                </span>
               )}
             </div>
           )}
@@ -186,31 +196,31 @@ const ProductCard = ({
 // Helper function to convert color names to hex
 function getColorHex(colorName) {
   const colorMap = {
-    black: '#000000',
-    white: '#FFFFFF',
-    navy: '#1a365d',
-    red: '#dc2626',
-    blue: '#2563eb',
-    green: '#16a34a',
-    brown: '#78350f',
-    pink: '#ec4899',
-    beige: '#d4b896',
-    coral: '#ff7f50',
-    mint: '#98ff98',
-    'neon-yellow': '#ccff00',
-    lavender: '#e6e6fa',
-    cream: '#fffdd0',
-    grey: '#6b7280',
-    gray: '#6b7280',
-    sage: '#9dc183',
-    blush: '#de5d83',
-    charcoal: '#36454f',
-    burgundy: '#800020',
-    'black-gold': '#000000',
-    'white-red': '#FFFFFF',
-    canvas: '#f5f5dc',
+    black: "#000000",
+    white: "#FFFFFF",
+    navy: "#1a365d",
+    red: "#dc2626",
+    blue: "#2563eb",
+    green: "#16a34a",
+    brown: "#78350f",
+    pink: "#ec4899",
+    beige: "#d4b896",
+    coral: "#ff7f50",
+    mint: "#98ff98",
+    "neon-yellow": "#ccff00",
+    lavender: "#e6e6fa",
+    cream: "#fffdd0",
+    grey: "#6b7280",
+    gray: "#6b7280",
+    sage: "#9dc183",
+    blush: "#de5d83",
+    charcoal: "#36454f",
+    burgundy: "#800020",
+    "black-gold": "#000000",
+    "white-red": "#FFFFFF",
+    canvas: "#f5f5dc",
   };
-  return colorMap[colorName.toLowerCase()] || '#cccccc';
+  return colorMap[colorName.toLowerCase()] || "#cccccc";
 }
 
 export default ProductCard;

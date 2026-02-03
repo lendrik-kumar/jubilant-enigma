@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from '../hooks/useRouter.jsx';
-import { useProducts } from '../hooks/useProducts';
-import ProductGrid from './ProductGrid';
-import { ArrowRight } from 'lucide-react';
+import React from "react";
+import { Link } from "../hooks/useRouter.jsx";
+import { useProducts } from "../hooks/useProducts";
+import ProductGrid from "./ProductGrid";
+import { ArrowRight } from "lucide-react";
 
 /**
  * FeaturedProducts Component
@@ -11,7 +11,7 @@ import { ArrowRight } from 'lucide-react';
 const FeaturedProducts = () => {
   // Fetch bestsellers and new arrivals
   const { products: bestsellers, loading: bestsellersLoading } = useProducts({
-    sort: 'featured',
+    sort: "featured",
   });
 
   const displayProducts = bestsellers.slice(0, 8);
@@ -77,7 +77,8 @@ const FeaturedProducts = () => {
               Step Into the Future of Footwear
             </h3>
             <p className="text-gray-300 mb-6 max-w-md">
-              Check out our latest drops featuring cutting-edge design and unmatched comfort.
+              Check out our latest drops featuring cutting-edge design and
+              unmatched comfort.
             </p>
             <Link
               href="/products?sort=newest"
