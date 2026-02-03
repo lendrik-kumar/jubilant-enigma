@@ -37,8 +37,8 @@ export function useProducts(initialFilters = {}) {
   }, []);
 
   const resetFilters = useCallback(() => {
-    setFilters(initialFilters);
-  }, [initialFilters]);
+    setFilters({ category: "all", sort: "featured" });
+  }, []);
 
   return {
     products,
@@ -48,6 +48,7 @@ export function useProducts(initialFilters = {}) {
     filters,
     updateFilters,
     resetFilters,
+    setFilters, // Expose for direct filter setting
     refetch: fetchProducts,
   };
 }

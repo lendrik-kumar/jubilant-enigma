@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useRouter } from "../hooks/useRouter.jsx";
 import { useProducts } from "../hooks/useProducts";
 import ProductGrid from "../components/ProductGrid";
@@ -11,18 +11,21 @@ import { Link } from "../hooks/useRouter.jsx";
  * Main products listing page with filters and sorting
  */
 const ProductsPage = () => {
-  const { getParam, getAllParams, navigate } = useRouter();
+  const { getParam, routeKey } = useRouter();
 
-  // Get initial filters from URL
-  const initialFilters = {
-    category: getParam("category") || "all",
-    gender: getParam("gender") || null,
-    sort: getParam("sort") || "featured",
-    minPrice: getParam("minPrice") ? Number(getParam("minPrice")) : undefined,
-    maxPrice: getParam("maxPrice") ? Number(getParam("maxPrice")) : undefined,
-    inStock: getParam("inStock") === "true" || undefined,
-    search: getParam("search") || "",
-  };
+  // Get filters from URL - using routeKey to force recalculation on route change
+  const urlFilters = useMemo(
+    () => ({
+      category: getParam("category") || "all",
+      gender: getParam("gender") || null,
+      sort: getParam("sort") || "featured",
+      minPrice: getParam("minPrice") ? Number(getParam("minPrice")) : undefined,
+      maxPrice: getParam("maxPrice") ? Number(getParam("maxPrice")) : undefined,
+      inStock: getParam("inStock") === "true" || undefined,
+      search: getParam("search") || "",
+    }),
+    [getParam, routeKey],
+  );
 
   const {
     products,
@@ -32,9 +35,15 @@ const ProductsPage = () => {
     filters,
     updateFilters,
     resetFilters,
-  } = useProducts(initialFilters);
+    setFilters,
+  } = useProducts(urlFilters);
 
-  // Sync filters to URL
+  // Sync URL params to filters when URL changes
+  useEffect(() => {
+    setFilters(urlFilters);
+  }, [urlFilters, setFilters]);
+
+  // Sync filters to URL (only when filters change from UI, not from URL)
   useEffect(() => {
     const params = {};
     if (filters.category && filters.category !== "all")
@@ -78,21 +87,29 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50 page-transition">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="bg-white border-b border-neutral-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-            <Link href="/" className="hover:text-gray-900">
+          <nav className="flex items-center gap-2 text-sm text-neutral-500 mb-6 animate-fade-in">
+            <Link href="/" className="hover:text-neutral-900 transition-colors">
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-gray-900 font-medium">Products</span>
+            <span className="text-neutral-900 font-medium">Products</span>
+            {filters.gender && (
+              <>
+                <ChevronRight className="w-4 h-4" />
+                <span className="text-neutral-900 font-medium capitalize">
+                  {filters.gender}
+                </span>
+              </>
+            )}
             {filters.category && filters.category !== "all" && (
               <>
                 <ChevronRight className="w-4 h-4" />
-                <span className="text-gray-900 font-medium capitalize">
+                <span className="text-neutral-900 font-medium capitalize">
                   {filters.category}
                 </span>
               </>
@@ -100,13 +117,13 @@ const ProductsPage = () => {
           </nav>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl sm:text-4xl font-bold text-neutral-900 animate-slide-up">
               {getPageTitle()}
             </h1>
 
             {/* Desktop Sort */}
-            <div className="hidden lg:flex items-center gap-4">
-              <span className="text-sm text-gray-500">{total} products</span>
+            <div className="hidden lg:flex items-center gap-4 animate-fade-in">
+              <span className="text-sm text-neutral-500">{total} products</span>
               <SortDropdown
                 value={filters.sort || "featured"}
                 onChange={(sortId) => handleFilterChange({ sort: sortId })}
@@ -117,11 +134,11 @@ const ProductsPage = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex gap-10">
           {/* Sidebar Filters - Desktop */}
           <aside className="hidden lg:block w-64 shrink-0">
-            <div className="sticky top-24">
+            <div className="sticky top-24 animate-slide-up">
               <ProductFilters
                 filters={filters}
                 onFilterChange={handleFilterChange}
@@ -139,7 +156,7 @@ const ProductsPage = () => {
               onFilterChange={handleFilterChange}
               onReset={handleReset}
               totalProducts={total}
-              className="lg:hidden"
+              className="lg:hidden mb-6"
             />
 
             <ProductGrid
@@ -156,8 +173,8 @@ const ProductsPage = () => {
 
             {/* Load More - For pagination integration */}
             {products.length > 0 && products.length < total && (
-              <div className="mt-12 text-center">
-                <button className="px-8 py-3 text-sm font-semibold text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <div className="mt-12 text-center animate-fade-in">
+                <button className="px-8 py-3 text-sm font-semibold text-neutral-900 bg-white border-2 border-neutral-300 rounded-full hover:border-amber-500 hover:text-amber-600 transition-all duration-300">
                   Load More Products
                 </button>
               </div>
