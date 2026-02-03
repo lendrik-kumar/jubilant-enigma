@@ -39,7 +39,7 @@ const Hero = () => {
               
               {/* Shoe Image */}
               <img 
-                src="/public/shoes/shoe-10.avif" 
+                src="/assets/shoes/shoe-10.avif" 
                 alt="X Lows Armstrong Shoe" 
                 className="relative z-10 w-full max-w-lg h-auto object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
               />

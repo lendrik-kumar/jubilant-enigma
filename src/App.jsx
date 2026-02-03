@@ -1,15 +1,66 @@
 import React from 'react'
+import { RouterProvider, useRouter } from './hooks/useRouter.jsx'
 import Navbar from './components/navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Highlights from './components/Highlights.jsx'
+import FeaturedProducts from './components/FeaturedProducts.jsx'
+import Newsletter from './components/Newsletter.jsx'
+import Footer from './components/Footer.jsx'
+import ProductsPage from './pages/ProductsPage.jsx'
+import ProductPage from './pages/ProductPage.jsx'
+
+// Route component for handling different pages
+const Routes = () => {
+  const { currentPath } = useRouter();
+
+  // Match routes
+  if (currentPath === '/' || currentPath === '') {
+    return (
+      <>
+        <Hero />
+        <Highlights />
+        <FeaturedProducts />
+        <Newsletter />
+      </>
+    );
+  }
+
+  if (currentPath === '/products') {
+    return <ProductsPage />;
+  }
+
+  if (currentPath.startsWith('/product/')) {
+    return <ProductPage />;
+  }
+
+  // 404 Page
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
+        <p className="text-xl text-gray-600 mb-8">Page not found</p>
+        <a
+          href="/"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+        >
+          Back to Home
+        </a>
+      </div>
+    </div>
+  );
+};
 
 const App = () => {
   return (
-    <main className="bg-black">
-      <Navbar />
-      <Hero />
-      <Highlights />
-    </main>
+    <RouterProvider>
+      <main className="bg-white min-h-screen flex flex-col">
+        <Navbar />
+        <div className="flex-1">
+          <Routes />
+        </div>
+        <Footer />
+      </main>
+    </RouterProvider>
   )
 }
 
