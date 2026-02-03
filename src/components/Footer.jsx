@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from '../hooks/useRouter.jsx';
-import { 
-  Facebook, 
-  Twitter, 
-  Instagram, 
+import React from "react";
+import { Link } from "../hooks/useRouter.jsx";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
   Youtube,
   MapPin,
   Phone,
   Mail,
-  CreditCard
-} from 'lucide-react';
+  CreditCard,
+} from "lucide-react";
 
 /**
  * Footer Component
@@ -20,40 +20,40 @@ const Footer = () => {
 
   const footerLinks = {
     shop: [
-      { label: "Men's Shoes", href: '/products?gender=men' },
-      { label: "Women's Shoes", href: '/products?gender=women' },
-      { label: 'New Arrivals', href: '/products?sort=newest' },
-      { label: 'Best Sellers', href: '/products?sort=featured' },
-      { label: 'Sale', href: '/products?sale=true' },
+      { label: "Men's Shoes", href: "/products?gender=men" },
+      { label: "Women's Shoes", href: "/products?gender=women" },
+      { label: "New Arrivals", href: "/products?sort=newest" },
+      { label: "Best Sellers", href: "/products?sort=featured" },
+      { label: "Sale", href: "/products?sale=true" },
     ],
     help: [
-      { label: 'Customer Service', href: '/support' },
-      { label: 'Track Order', href: '/track' },
-      { label: 'Returns & Exchange', href: '/returns' },
-      { label: 'Shipping Info', href: '/shipping' },
-      { label: 'Size Guide', href: '/size-guide' },
-      { label: 'FAQ', href: '/faq' },
+      { label: "Customer Service", href: "/support" },
+      { label: "Track Order", href: "/track" },
+      { label: "Returns & Exchange", href: "/returns" },
+      { label: "Shipping Info", href: "/shipping" },
+      { label: "Size Guide", href: "/size-guide" },
+      { label: "FAQ", href: "/faq" },
     ],
     company: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Press', href: '/press' },
-      { label: 'Sustainability', href: '/sustainability' },
-      { label: 'Store Locator', href: '/stores' },
+      { label: "About Us", href: "/about" },
+      { label: "Careers", href: "/careers" },
+      { label: "Press", href: "/press" },
+      { label: "Sustainability", href: "/sustainability" },
+      { label: "Store Locator", href: "/stores" },
     ],
     legal: [
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
-      { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'Accessibility', href: '/accessibility' },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookies" },
+      { label: "Accessibility", href: "/accessibility" },
     ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
+    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+    { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
   ];
 
   return (
@@ -64,13 +64,17 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <img src="/logo.svg" alt="Classic Shoes" className="h-10 invert" />
+              <img
+                src="/logo.svg"
+                alt="Classic Shoes"
+                className="h-10 invert"
+              />
             </Link>
             <p className="text-gray-400 mb-6 max-w-xs">
-              Premium footwear crafted for style, comfort, and performance. 
-              Step into confidence with every pair.
+              Premium footwear crafted for style, comfort, and performance. Step
+              into confidence with every pair.
             </p>
-            
+
             {/* Contact Info */}
             <div className="space-y-3 text-sm text-gray-400">
               <div className="flex items-center gap-3">
@@ -164,7 +168,7 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-            
+
             {/* App Download Buttons (placeholder) */}
             <p className="text-sm text-gray-400 mb-3">Get the app</p>
             <div className="space-y-2">

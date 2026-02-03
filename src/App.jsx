@@ -1,20 +1,20 @@
-import React from 'react'
-import { RouterProvider, useRouter } from './hooks/useRouter.jsx'
-import Navbar from './components/navbar.jsx'
-import Hero from './components/Hero.jsx'
-import Highlights from './components/Highlights.jsx'
-import FeaturedProducts from './components/FeaturedProducts.jsx'
-import Newsletter from './components/Newsletter.jsx'
-import Footer from './components/Footer.jsx'
-import ProductsPage from './pages/ProductsPage.jsx'
-import ProductPage from './pages/ProductPage.jsx'
+import React from "react";
+import { RouterProvider, useRouter } from "./hooks/useRouter.jsx";
+import Navbar from "./components/navbar.jsx";
+import Hero from "./components/Hero.jsx";
+import Highlights from "./components/Highlights.jsx";
+import FeaturedProducts from "./components/FeaturedProducts.jsx";
+import Newsletter from "./components/Newsletter.jsx";
+import Footer from "./components/Footer.jsx";
+import ProductsPage from "./pages/ProductsPage.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
 
 // Route component for handling different pages
 const Routes = () => {
   const { currentPath } = useRouter();
 
   // Match routes
-  if (currentPath === '/' || currentPath === '') {
+  if (currentPath === "/" || currentPath === "") {
     return (
       <>
         <Hero />
@@ -25,11 +25,11 @@ const Routes = () => {
     );
   }
 
-  if (currentPath === '/products') {
+  if (currentPath === "/products") {
     return <ProductsPage />;
   }
 
-  if (currentPath.startsWith('/product/')) {
+  if (currentPath.startsWith("/product/")) {
     return <ProductPage />;
   }
 
@@ -61,7 +61,7 @@ const App = () => {
         <Footer />
       </main>
     </RouterProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -31,8 +31,18 @@ export default function Navbar() {
         className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
         aria-label="Primary"
       >
-        <Link href="/" aria-label="Classic Shoes Home" className="flex items-center">
-          <img src="/logo.svg" alt="Classic Shoes" width={60} height={60} className="invert"/>
+        <Link
+          href="/"
+          aria-label="Classic Shoes Home"
+          className="flex items-center"
+        >
+          <img
+            src="/logo.svg"
+            alt="Classic Shoes"
+            width={60}
+            height={60}
+            className="invert"
+          />
         </Link>
 
         <ul className="hidden items-center gap-6 md:flex lg:gap-8">
@@ -64,43 +74,69 @@ export default function Navbar() {
             onMouseEnter={() => setUserDropdown(true)}
             onMouseLeave={() => setUserDropdown(false)}
           >
-            <button aria-label="Account" className="p-2 transition-colors hover:text-gray-600">
+            <button
+              aria-label="Account"
+              className="p-2 transition-colors hover:text-gray-600"
+            >
               <User className="h-6 w-6 stroke-[1.5]" />
             </button>
-            
+
             {userDropdown && (
               <div className="absolute right-0 mt-0 w-72 bg-white border border-gray-200 shadow-lg rounded-sm">
                 <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-bold text-black mb-2">Welcome</h3>
-                  <p className="text-[13px] text-gray-700 mb-4">To access account and manage orders</p>
+                  <p className="text-[13px] text-gray-700 mb-4">
+                    To access account and manage orders
+                  </p>
                   <button className="w-full bg-yellow-400 py-3 font-bold text-black text-[13px] hover:bg-yellow-500 transition">
                     LOGIN / SIGNUP
                   </button>
                 </div>
                 <div className="p-4 space-y-3">
-                  <a href="/track" className="block text-[14px] font-semibold text-black hover:text-gray-600">
+                  <a
+                    href="/track"
+                    className="block text-[14px] font-semibold text-black hover:text-gray-600"
+                  >
                     Track your Order
                   </a>
-                  <a href="/store" className="block text-[14px] font-semibold text-black hover:text-gray-600">
+                  <a
+                    href="/store"
+                    className="block text-[14px] font-semibold text-black hover:text-gray-600"
+                  >
                     Store Locator
                   </a>
-                  <a href="/returns" className="block text-[14px] font-semibold text-black hover:text-gray-600">
+                  <a
+                    href="/returns"
+                    className="block text-[14px] font-semibold text-black hover:text-gray-600"
+                  >
                     Returns and Exchange
                   </a>
-                  <a href="/garage" className="block text-[14px] font-semibold text-black hover:text-gray-600">
+                  <a
+                    href="/garage"
+                    className="block text-[14px] font-semibold text-black hover:text-gray-600"
+                  >
                     The Garage
                   </a>
-                  <a href="/care" className="block text-[14px] font-semibold text-black hover:text-gray-600">
+                  <a
+                    href="/care"
+                    className="block text-[14px] font-semibold text-black hover:text-gray-600"
+                  >
                     Care
                   </a>
-                  <a href="/faq" className="block text-[14px] font-semibold text-black hover:text-gray-600">
+                  <a
+                    href="/faq"
+                    className="block text-[14px] font-semibold text-black hover:text-gray-600"
+                  >
                     FAQ
                   </a>
                 </div>
               </div>
             )}
           </div>
-          <button aria-label="Shopping Cart" className="p-2 transition-colors hover:text-gray-600">
+          <button
+            aria-label="Shopping Cart"
+            className="p-2 transition-colors hover:text-gray-600"
+          >
             <ShoppingBag className="h-6 w-6 stroke-[1.5]" />
           </button>
         </div>

@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { productApi } from '../constants/products';
+import { useState, useEffect, useCallback } from "react";
+import { productApi } from "../constants/products";
 
 /**
  * Custom hook for fetching products with filters
@@ -15,13 +15,13 @@ export function useProducts(initialFilters = {}) {
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const result = await productApi.getProducts(filters);
       setProducts(result.products);
       setTotal(result.total);
     } catch (err) {
-      setError(err.message || 'Failed to fetch products');
+      setError(err.message || "Failed to fetch products");
       setProducts([]);
     } finally {
       setLoading(false);
@@ -33,7 +33,7 @@ export function useProducts(initialFilters = {}) {
   }, [fetchProducts]);
 
   const updateFilters = useCallback((newFilters) => {
-    setFilters(prev => ({ ...prev, ...newFilters }));
+    setFilters((prev) => ({ ...prev, ...newFilters }));
   }, []);
 
   const resetFilters = useCallback(() => {
@@ -48,7 +48,7 @@ export function useProducts(initialFilters = {}) {
     filters,
     updateFilters,
     resetFilters,
-    refetch: fetchProducts
+    refetch: fetchProducts,
   };
 }
 
@@ -69,12 +69,12 @@ export function useProduct(productId) {
     const fetchProduct = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         const result = await productApi.getProductById(productId);
         setProduct(result);
       } catch (err) {
-        setError(err.message || 'Failed to fetch product');
+        setError(err.message || "Failed to fetch product");
         setProduct(null);
       } finally {
         setLoading(false);
