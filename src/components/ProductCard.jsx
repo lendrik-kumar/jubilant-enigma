@@ -144,7 +144,7 @@ const ProductCard = ({
           >
             <button
               onClick={handleAddToCart}
-              className="flex-1 flex items-center justify-center gap-2 py-3 bg-amber-500 text-neutral-900 font-bold text-sm rounded-xl hover:bg-amber-400 transition-colors shadow-lg"
+              className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black font-bold text-sm rounded-xl hover:bg-yellow-500 transition-colors shadow-lg"
             >
               <ShoppingBag className="w-4 h-4" />
               Add to Cart
@@ -194,16 +194,16 @@ const ProductCard = ({
           {/* Price Row */}
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xl font-bold text-neutral-900">
-              ${price.toFixed(2)}
+              ₹{price.toFixed(2)}
             </span>
             {originalPrice && (
               <span className="text-sm text-neutral-400 line-through">
-                ${originalPrice.toFixed(2)}
+                ₹{originalPrice.toFixed(2)}
               </span>
             )}
             {discount && (
               <span className="text-xs font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded">
-                Save ${(originalPrice - price).toFixed(0)}
+                Save ₹{(originalPrice - price).toFixed(0)}
               </span>
             )}
           </div>

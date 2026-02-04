@@ -231,15 +231,15 @@ const ProductDetail = ({ productId }) => {
             {/* Price */}
             <div className="flex items-center gap-4 py-4 px-5 bg-neutral-50 rounded-2xl">
               <span className="text-3xl font-bold text-neutral-900">
-                ${product.price.toFixed(2)}
+                ₹{product.price.toFixed(2)}
               </span>
               {product.originalPrice && (
                 <>
                   <span className="text-xl text-neutral-400 line-through">
-                    ${product.originalPrice.toFixed(2)}
+                    ₹{product.originalPrice.toFixed(2)}
                   </span>
                   <span className="px-3 py-1.5 text-sm font-bold bg-rose-100 text-rose-600 rounded-full">
-                    Save ${(product.originalPrice - product.price).toFixed(0)}
+                    Save ₹{(product.originalPrice - product.price).toFixed(0)}
                   </span>
                 </>
               )}

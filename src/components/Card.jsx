@@ -17,7 +17,7 @@ export default function Card({
   className = "",
 }) {
   const displayPrice =
-    price === undefined ? undefined : typeof price === "number" ? `$${price.toFixed(2)}` : price;
+    price === undefined ? undefined : typeof price === "number" ? `₹${price.toFixed(2)}` : price;
   const content = (
     <article
       className={`group rounded-xl bg-light-100 ring-1 ring-light-300 transition-colors hover:ring-dark-500 ${className}`}

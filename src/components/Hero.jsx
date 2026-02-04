@@ -78,9 +78,8 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full min-h-[70vh] bg-[#030303] overflow-hidden">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.03] via-transparent to-rose-500/[0.03] blur-3xl" />
+    <section className="relative w-full h-[500px] bg-[#030303] overflow-hidden">
+      {/* Subtle gradient overlay */}      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.03] via-transparent to-rose-500/[0.03] blur-3xl" />
 
       {/* Animated Geometric Shapes Background */}
       <div className="absolute inset-0 overflow-hidden">
@@ -131,26 +130,26 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-bottom opacity-50 pointer-events-none"
         style={{
           backgroundImage: `url('https://plus.unsplash.com/premium_photo-1762745549473-a47f75a4946c?q=80&w=1625&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
-          maskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
-          WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
+          // maskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
+          // WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 60%)', (#SANKET; keep this for reference(dont remove any comments))
         }}
       />
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex items-center min-h-[70vh]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full">
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <motion.div
               custom={0}
               variants={fadeUpVariants}
               initial="hidden"
               animate="visible"
             >
-              <p className="text-sm md:text-base font-light text-neutral-400 tracking-widest mb-4 italic">
+              <p className="text-sm font-light text-neutral-400 tracking-widest mb-3 italic">
                 Embracing Excellence
               </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight uppercase">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight uppercase">
                 MODEL-X SHOENAME?
               </h1>
             </motion.div>

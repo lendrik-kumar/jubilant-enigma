@@ -95,7 +95,7 @@ const FeaturedProducts = () => {
             </p>
             <Link
               href="/products?sort=newest"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-amber-500 text-neutral-900 font-bold rounded-full hover:bg-amber-400 transition-all hover:scale-105 shadow-lg shadow-amber-500/30"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-yellow-400 text-black font-bold rounded-full hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg shadow-yellow-400/30"
             >
               Shop New Arrivals
               <ArrowRight className="w-5 h-5" />
@@ -130,7 +130,7 @@ const CategoryCard = ({ title, description, image, href, icon }) => (
         {title}
       </h3>
       <p className="text-neutral-300 mb-4">{description}</p>
-      <span className="inline-flex items-center gap-2 text-sm font-bold text-white bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full group-hover:bg-amber-500 group-hover:text-neutral-900 transition-all">
+      <span className="inline-flex items-center gap-2 text-sm font-bold text-white bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full group-hover:bg-yellow-400 group-hover:text-black transition-all">
         Explore
         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
       </span>
