@@ -7,6 +7,7 @@ export { default as Hero } from "./Hero";
 export { default as Highlights } from "./Highlights";
 export { default as VideoCarousel } from "./VideoCarousel";
 export { default as FeaturedProducts } from "./FeaturedProducts";
+export { default as CustomerReviews } from "./CustomerReviews";
 export { default as Newsletter } from "./Newsletter";
 
 // Product Components

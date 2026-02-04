@@ -1,131 +1,204 @@
 import React from "react";
 import { Link } from "../hooks/useRouter.jsx";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "../lib/utils.js";
+
+// Animated elegant shape component for background
+function ElegantShape({
+  className,
+  delay = 0,
+  width = 400,
+  height = 100,
+  rotate = 0,
+  gradient = "from-white/[0.08]",
+}) {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: -150,
+        rotate: rotate - 15,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        rotate: rotate,
+      }}
+      transition={{
+        duration: 2.4,
+        delay,
+        ease: [0.23, 0.86, 0.39, 0.96],
+        opacity: { duration: 1.2 },
+      }}
+      className={cn("absolute", className)}
+    >
+      <motion.div
+        animate={{
+          y: [0, 15, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          width,
+          height,
+        }}
+        className="relative"
+      >
+        <div
+          className={cn(
+            "absolute inset-0 rounded-full",
+            "bg-gradient-to-r to-transparent",
+            gradient,
+            "backdrop-blur-[2px] border-2 border-white/[0.15]",
+            "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
+            "after:absolute after:inset-0 after:rounded-full",
+            "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]"
+          )}
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
 
 const Hero = () => {
+  const fadeUpVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        delay: 0.5 + i * 0.2,
+        ease: [0.25, 0.4, 0.25, 1],
+      },
+    }),
+  };
+
   return (
-    <section className="relative w-full min-h-[700px] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 overflow-hidden">
-      {/* Animated background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.3) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.2) 0%, transparent 50%)`,
-          }}
+    <section className="relative w-full min-h-[70vh] bg-[#030303] overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.03] via-transparent to-rose-500/[0.03] blur-3xl" />
+
+      {/* Animated Geometric Shapes Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <ElegantShape
+          delay={0.3}
+          width={600}
+          height={140}
+          rotate={12}
+          gradient="from-indigo-500/[0.12]"
+          className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
+        />
+        <ElegantShape
+          delay={0.5}
+          width={500}
+          height={120}
+          rotate={-15}
+          gradient="from-rose-500/[0.12]"
+          className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
+        />
+        <ElegantShape
+          delay={0.4}
+          width={300}
+          height={80}
+          rotate={-8}
+          gradient="from-violet-500/[0.12]"
+          className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
+        />
+        <ElegantShape
+          delay={0.6}
+          width={200}
+          height={60}
+          rotate={20}
+          gradient="from-amber-500/[0.12]"
+          className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
+        />
+        <ElegantShape
+          delay={0.7}
+          width={150}
+          height={40}
+          rotate={-25}
+          gradient="from-cyan-500/[0.12]"
+          className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
         />
       </div>
 
+      {/* Smoke/Cloud effect at bottom */}
+      <div
+        className="absolute inset-0 bg-cover bg-bottom opacity-50 pointer-events-none"
+        style={{
+          backgroundImage: `url('https://plus.unsplash.com/premium_photo-1762745549473-a47f75a4946c?q=80&w=1625&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+          maskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
+          WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
+        }}
+      />
+
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex items-center min-h-[700px]">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex items-center min-h-[70vh]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
           {/* Left Content */}
           <div className="space-y-8">
-            <div className="animate-slide-up">
-              <span className="inline-block px-4 py-2 text-xs font-bold bg-amber-500/20 text-amber-400 rounded-full uppercase tracking-widest mb-6">
-                New Collection 2026
-              </span>
-              <p className="text-sm md:text-base font-light text-neutral-400 tracking-widest uppercase mb-4">
-                Defying gravity
-              </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
-                X LOWS
-                <span className="block text-amber-500">ARMSTRONG</span>
-              </h1>
-            </div>
-
-            <p
-              className="text-lg text-neutral-400 max-w-md animate-slide-up stagger-1"
-              style={{ animationFillMode: "backwards" }}
+            <motion.div
+              custom={0}
+              variants={fadeUpVariants}
+              initial="hidden"
+              animate="visible"
             >
-              Step into the future with our revolutionary design. Premium
-              materials meet cutting-edge technology.
-            </p>
+              <p className="text-sm md:text-base font-light text-neutral-400 tracking-widest mb-4 italic">
+                Embracing Excellence
+              </p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight uppercase">
+                MODEL-X SHOENAME?
+              </h1>
+            </motion.div>
 
             {/* CTA Buttons */}
-            <div
-              className="flex flex-wrap gap-4 animate-slide-up stagger-2"
-              style={{ animationFillMode: "backwards" }}
+            <motion.div
+              custom={1}
+              variants={fadeUpVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-wrap gap-4"
             >
               <Link
                 href="/products?gender=men"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-amber-500 text-neutral-900 font-bold text-sm uppercase tracking-wide rounded-full hover:bg-amber-400 transition-all duration-300 shadow-lg hover:shadow-amber-500/30 hover:scale-105"
+                className="inline-flex items-center justify-center px-10 py-4 bg-[#F2D200] text-black font-bold text-sm uppercase tracking-wide hover:bg-[#E5C700] transition-all duration-300"
               >
                 Shop Men
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/products?gender=women"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-transparent text-white font-bold text-sm uppercase tracking-wide rounded-full border-2 border-white/30 hover:border-amber-500 hover:text-amber-500 transition-all duration-300"
+                className="inline-flex items-center justify-center px-10 py-4 bg-[#F2D200] text-black font-bold text-sm uppercase tracking-wide hover:bg-[#E5C700] transition-all duration-300"
               >
                 Shop Women
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-            </div>
-
-            {/* Stats */}
-            <div
-              className="flex gap-8 pt-8 border-t border-white/10 animate-fade-in stagger-3"
-              style={{ animationFillMode: "backwards" }}
-            >
-              <div>
-                <p className="text-3xl font-bold text-white">50K+</p>
-                <p className="text-sm text-neutral-500">Happy Customers</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-white">4.9</p>
-                <p className="text-sm text-neutral-500">Average Rating</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-white">100+</p>
-                <p className="text-sm text-neutral-500">Styles Available</p>
-              </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Content - Shoe Image */}
-          <div className="relative flex justify-center items-center animate-fade-in">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="relative flex justify-center items-center"
+          >
             <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-amber-500/20 blur-3xl rounded-full scale-75 animate-pulse-glow"></div>
-
               {/* Shoe Image */}
               <img
-                src="/assets/shoes/shoe-10.avif"
+                src="/assets/shoes/shoe-10.png"
                 alt="X Lows Armstrong Shoe"
-                className="relative z-10 w-full max-w-xl h-auto object-contain drop-shadow-2xl animate-float"
+                className="relative z-10 w-full max-w-xl h-auto object-contain drop-shadow-2xl"
               />
-
-              {/* Floating badges */}
-              <div
-                className="absolute -top-4 -right-4 px-4 py-2 bg-white rounded-full shadow-xl animate-bounce-in"
-                style={{
-                  animationDelay: "0.5s",
-                  animationFillMode: "backwards",
-                }}
-              >
-                <span className="text-sm font-bold text-neutral-900">
-                  🔥 Trending
-                </span>
-              </div>
-              <div
-                className="absolute bottom-8 -left-4 px-4 py-2 bg-amber-500 rounded-full shadow-xl animate-bounce-in"
-                style={{
-                  animationDelay: "0.7s",
-                  animationFillMode: "backwards",
-                }}
-              >
-                <span className="text-sm font-bold text-neutral-900">
-                  Free Shipping
-                </span>
-              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-neutral-900 to-transparent"></div>
+      {/* Top and bottom gradient fades */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
     </section>
   );
 };

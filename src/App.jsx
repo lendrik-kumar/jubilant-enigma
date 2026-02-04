@@ -1,10 +1,7 @@
 import { RouterProvider, useRouter } from "./hooks/useRouter.jsx";
 import Navbar from "./components/navbar.jsx";
-import Hero from "./components/Hero.jsx";
-import Highlights from "./components/Highlights.jsx";
-import FeaturedProducts from "./components/FeaturedProducts.jsx";
-import Newsletter from "./components/Newsletter.jsx";
 import Footer from "./components/Footer.jsx";
+import HomePage from "./pages/HomePage.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 
@@ -14,14 +11,7 @@ const Routes = () => {
 
   // Match routes
   if (currentPath === "/" || currentPath === "") {
-    return (
-      <>
-        <Hero />
-        <Highlights />
-        <FeaturedProducts />
-        <Newsletter />
-      </>
-    );
+    return <HomePage />;
   }
 
   if (currentPath === "/products") {

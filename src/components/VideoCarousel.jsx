@@ -168,23 +168,23 @@ const VideoCarousel = () => {
         ))}
       </div>
 
-      <div className="py-6 relative flex items-center justify-center mt-10">
-        {/* <div className="flex items-center justify-center py-5 px-7 gap-2 bg-[var(--color-gray-300)] backdrop-blur rounded-full">
+      {/* <div className="py-6 relative flex items-center justify-center mt-10">
+        <div className="flex items-center justify-center py-5 px-7 gap-2 bg-[var(--color-gray-300)] backdrop-blur rounded-full">
           {videoRef.current.map((_, i) => (
-            // <span
-            //   key={i}
-            //   ref={el => (videoDivRef.current[i] = el)}
-            //   className="w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
-            // >
-            //   <span
-            //     ref={el => (videoSpanRef.current[i] = el)}
-            //     className="absolute h-full w-full rounded-full"
-            //   />
-            // </span>
+            <span
+              key={i}
+              ref={el => (videoDivRef.current[i] = el)}
+              className="w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
+            >
+              <span
+                ref={el => (videoSpanRef.current[i] = el)}
+                className="absolute h-full w-full rounded-full"
+              />
+            </span>
           ))}
-        </div> */}
+        </div>
 
-        {/* <button className="
+        <button className="
           ml-4 p-4 rounded-full
           bg-[var(--color-gray-300)]
           backdrop-blur
@@ -201,8 +201,8 @@ const VideoCarousel = () => {
                 : () => handleProcess('pause')
             }
           />
-        </button> */}
-      </div>
+        </button>
+      </div> */}
     </>
   );
 };

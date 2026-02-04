@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import Hero from "../components/Hero";
 import Highlights from "../components/Highlights";
 import FeaturedProducts from "../components/FeaturedProducts";
+import CustomerReviews from "../components/CustomerReviews";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 
@@ -16,6 +17,7 @@ const HomePage = () => {
       <Hero />
       <Highlights />
       <FeaturedProducts />
+      <CustomerReviews />
       <Newsletter />
     </>
   );
