@@ -1,4 +1,3 @@
-import React from "react";
 import { RouterProvider, useRouter } from "./hooks/useRouter.jsx";
 import Navbar from "./components/navbar.jsx";
 import Hero from "./components/Hero.jsx";

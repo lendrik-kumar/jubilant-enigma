@@ -41,7 +41,7 @@ const Highlights = () => {
               lg:text-6xl lg:mb-0
             "
           >
-            Get the highlights.
+            Step Into Style.
           </h1>
 
           <div className="flex flex-wrap items-end gap-5">
@@ -54,7 +54,7 @@ const Highlights = () => {
               hover:underline
               py-4
             ">
-              Watch the film
+              Watch the Collection
               <img src={watchImg} alt="watch" />
             </p>
 
@@ -67,8 +67,8 @@ const Highlights = () => {
               hover:underline
               py-4
             ">
-              Watch the film
-              <img src={rightImg} alt="watch" />
+              Shop Now
+              <img src={rightImg} alt="shop" />
             </p>
           </div>
         </div>

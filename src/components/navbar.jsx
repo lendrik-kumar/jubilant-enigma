@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Search, User, ShoppingBag, X, Menu } from "lucide-react";
 import { Link, useRouter } from "../hooks/useRouter.jsx";
+import LoginModal from "./LoginModal";
 
 const NAV_LINKS = [
   { label: "New Launch", href: "/products?sort=newest" },
@@ -15,17 +16,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [scrolled, setScrolled] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const { navigate, currentPath } = useRouter();
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -44,20 +36,10 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-white"
-      }`}
-    >
-      {/* Top announcement bar */}
-      <div className="bg-neutral-900 text-white text-center py-2 text-xs font-medium tracking-wide">
-        <span className="text-amber-400">✨ FREE SHIPPING</span> on orders over
-        $100 | Use code:{" "}
-        <span className="text-amber-400 font-bold">CLASSIC20</span>
-      </div>
-
+    <>
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
       <nav
-        className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4"
+        className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
         aria-label="Primary"
       >
       <Link
@@ -122,13 +104,17 @@ export default function Navbar() {
             </button>
 
             {userDropdown && (
-              <div className="absolute right-0 mt-2 w-72 bg-white border border-neutral-200 shadow-xl rounded-xl overflow-hidden animate-slide-down">
-                <div className="p-6 bg-gradient-to-br from-neutral-900 to-neutral-800 text-white">
-                  <h3 className="text-xl font-bold mb-1">Welcome! 👋</h3>
-                  <p className="text-sm text-neutral-400 mb-4">
-                    Sign in to access your account
-                  </p>
-                  <button className="w-full bg-amber-500 py-3 font-bold text-neutral-900 text-sm rounded-lg hover:bg-amber-400 transition-colors">
+              <div className="absolute right-0 mt-0 w-72 bg-white border border-gray-200 shadow-lg rounded-sm">
+                <div className="p-6 border-b border-gray-200">
+                  <h3 className="text-xl font-bold text-black mb-2">Welcome</h3>
+                  <p className="text-[13px] text-gray-700 mb-4">To access account and manage orders</p>
+                  <button 
+                    onClick={() => {
+                      setUserDropdown(false);
+                      setLoginModalOpen(true);
+                    }}
+                    className="w-full bg-yellow-400 py-3 font-bold text-black text-[13px] hover:bg-yellow-500 transition"
+                  >
                     LOGIN / SIGNUP
                   </button>
                 </div>
@@ -202,31 +188,14 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          <li className="pt-4">
-            <form onSubmit={handleSearch} className="flex items-center gap-3">
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 rounded-lg bg-white border border-neutral-200 px-4 py-3 text-sm placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
-              />
-              <button
-                type="submit"
-                aria-label="Search"
-                className="p-3 bg-amber-500 rounded-lg hover:bg-amber-400 transition-colors"
-              >
-                <Search className="h-5 w-5 text-neutral-900" />
-              </button>
-            </form>
-          </li>
-          <li className="flex items-center gap-3 pt-4 border-t border-neutral-200 mt-4">
-            <button
-              aria-label="Account"
-              className="flex-1 flex items-center justify-center gap-2 py-3 bg-neutral-900 text-white rounded-lg font-medium"
-            >
-              <User className="h-5 w-5" />
-              Account
+          <li className="flex items-center gap-3 pt-2">
+            <input
+              type="text"
+              placeholder="Search"
+              className="flex-1 rounded-full bg-gray-100 px-4 py-2 text-[13px] font-medium placeholder:text-gray-500 focus:outline-none focus:bg-gray-200"
+            />
+            <button aria-label="Favorites">
+              <User className="h-6 w-6" />
             </button>
             <button
               aria-label="Shopping Cart"
@@ -239,5 +208,9 @@ export default function Navbar() {
         </ul>
       </div>
     </header>
+    
+    {/* Login Modal */}
+    <LoginModal isOpen={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
+    </>
   );
 }
