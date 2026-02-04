@@ -24,8 +24,8 @@ const Highlights = () => {
       id="highlights"
       className="
         w-screen overflow-hidden h-full
-        py-20 px-5
-        sm:py-32 sm:px-10
+        pt-16 pb-10 px-5
+        sm:pt-12 sm:pb-32 sm:px-10
         bg-white
       "
     >
