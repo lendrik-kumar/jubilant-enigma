@@ -38,26 +38,26 @@ const Footer = () => {
                 <div>
                   <span className="text-neutral-400">Whatsapp: </span>
                   <a href="tel:+919606081463" className="text-white underline hover:text-neutral-300">
-                    +91 9606081463
+                    +91 97*******3
                   </a>
                 </div>
               </div>
               <div>
                 <span className="text-neutral-400">Support: </span>
-                <a href="mailto:hello@wearcomet.com" className="text-white underline hover:text-neutral-300">
-                  hello@wearcomet.com
+                <a href="mailto:hello@sprintwear.com" className="text-white underline hover:text-neutral-300">
+                  hello@sprintwear.com
                 </a>
               </div>
               <div>
                 <span className="text-neutral-400">Gifting and Corporate Orders: </span>
-                <a href="mailto:bulkorders@wearcomet.com" className="text-white underline hover:text-neutral-300">
-                  bulkorders@wearcomet.com
+                <a href="mailto:bulkorders@sprintwear.com" className="text-white underline hover:text-neutral-300">
+                  bulkorders@sprintwear.com
                 </a>
               </div>
               <div>
                 <span className="text-neutral-400">Marketing & Partnership: </span>
-                <a href="mailto:partnerships@wearcomet.com" className="text-white underline hover:text-neutral-300">
-                  partnerships@wearcomet.com
+                <a href="mailto:partnerships@sprintwear.com" className="text-white underline hover:text-neutral-300">
+                  partnerships@sprintwear.com
                 </a>
               </div>
               <div>
@@ -77,8 +77,8 @@ const Footer = () => {
                 </h3>
               </div>
               <p className="text-sm text-neutral-400 leading-relaxed">
-                3rd Floor, No.616, 15th Main Rd, 4th Block,<br />
-                Koramangala, Bengaluru, Karnataka 560034
+                nrd Floor, No.616, some road, 4th Block,<br />
+                some area, somecity, some state, 56***4
               </p>
             </div>
           </div>
@@ -134,7 +134,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link href="/garage" className="text-neutral-400 hover:text-white transition-colors uppercase">
-                    The Garage
+                    The inventory
                   </Link>
                 </li>
                 <li>

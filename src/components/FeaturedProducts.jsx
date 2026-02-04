@@ -17,31 +17,27 @@ const FeaturedProducts = () => {
   const displayProducts = bestsellers.slice(0, 8);
 
   return (
-    <section className="py-20 sm:py-28 bg-neutral-50">
+    <section className="pt-8 pb-20 sm:pt-12 sm:pb-28 bg-neutral-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
           <div className="animate-slide-up">
-            <div className="flex items-center gap-2 mb-4">
-              <Sparkles className="w-5 h-5 text-amber-500" />
-              <span className="text-sm font-bold text-amber-600 uppercase tracking-wider">
-                Curated for you
-              </span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-4">
-              Featured <span className="text-amber-500">Collection</span>
+            <span className="inline-block text-xs font-bold text-amber-600 bg-neutral-100 px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+              ✦ Featured
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-2">
+              Our Best <span className="bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent">Sellers</span>
             </h2>
-            <p className="text-lg text-neutral-600 max-w-xl">
-              Discover our most popular styles loved by customers worldwide.
-              Quality meets style in every pair.
+            <p className="text-base text-neutral-500 max-w-md">
+              Handpicked styles loved by thousands worldwide.
             </p>
           </div>
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold text-neutral-900 bg-white border-2 border-neutral-200 rounded-full hover:border-amber-500 hover:text-amber-600 transition-all group animate-fade-in"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-neutral-900 bg-neutral-100 rounded-full hover:bg-neutral-900 hover:text-white transition-all duration-300 animate-fade-in"
           >
-            View All Products
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            View All
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>
 
@@ -95,10 +91,11 @@ const FeaturedProducts = () => {
             </p>
             <Link
               href="/products?sort=newest"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-yellow-400 text-black font-bold rounded-full hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg shadow-yellow-400/30"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 to-yellow-400 text-neutral-900 font-bold rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden"
             >
-              Shop New Arrivals
-              <ArrowRight className="w-5 h-5" />
+              <span className="relative z-10">Shop New Arrivals</span>
+              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
           </div>
         </div>

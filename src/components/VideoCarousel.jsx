@@ -4,6 +4,7 @@ import { pauseImg, playImg, replayImg } from '../utils';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Play, Pause, RotateCcw } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +12,7 @@ const VideoCarousel = () => {
   const videoRef = useRef([]);
   const videoSpanRef = useRef([]);
   const videoDivRef = useRef([]);
+  const sliderRef = useRef(null);
 
   const [video, setVideo] = useState({
     isEnd: false,
@@ -27,8 +29,8 @@ const VideoCarousel = () => {
   useGSAP(() => {
     gsap.to('#slider', {
       transform: `translateX(${-videoId * 100}%)`,
-      duration: 2,
-      ease: 'power2.inOut'
+      duration: 1,
+      ease: 'power3.inOut'
     });
 
     gsap.to('#video', {
@@ -59,6 +61,19 @@ const VideoCarousel = () => {
     let currentProgress = 0;
     let span = videoSpanRef.current;
 
+    // Reset all indicators first, then animate current
+    hightlightsSlides.forEach((_, i) => {
+      if (i < videoId) {
+        // Completed videos - show full progress
+        gsap.set(videoDivRef.current[i], { width: '8px' });
+        gsap.set(span[i], { width: '100%', backgroundColor: '#525252' });
+      } else if (i > videoId) {
+        // Future videos - reset to empty
+        gsap.set(videoDivRef.current[i], { width: '8px' });
+        gsap.set(span[i], { width: '0%', backgroundColor: '#525252' });
+      }
+    });
+
     if (span[videoId]) {
       let anim = gsap.to(span[videoId], {
         onUpdate: () => {
@@ -69,22 +84,28 @@ const VideoCarousel = () => {
             gsap.to(videoDivRef.current[videoId], {
               width:
                 window.innerWidth < 760
-                  ? '10vw'
+                  ? '32px'
                   : window.innerWidth < 1200
-                  ? '10vw'
-                  : '4vw'
+                  ? '40px'
+                  : '48px',
+              duration: 0.3,
+              ease: 'power2.out'
             });
 
             gsap.to(span[videoId], {
               width: `${currentProgress}%`,
-              backgroundColor: '#fff'
+              backgroundColor: '#f59e0b'
             });
           }
         },
         onComplete: () => {
           if (isPlaying) {
-            gsap.to(videoDivRef.current[videoId], { width: '12px' });
-            gsap.to(span[videoId], { backgroundColor: '#afafaf' });
+            gsap.to(videoDivRef.current[videoId], { 
+              width: '8px',
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+            gsap.to(span[videoId], { backgroundColor: '#525252' });
           }
         }
       });
@@ -103,6 +124,29 @@ const VideoCarousel = () => {
         : gsap.ticker.remove(animUpdate);
     }
   }, [videoId, startPlay]);
+
+  // Auto-restart from beginning when last video ends
+  useEffect(() => {
+    if (isLastVideo) {
+      // Animate the transition and restart
+      gsap.to('#slider', {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          setVideo(prev => ({ 
+            ...prev, 
+            isLastVideo: false, 
+            videoId: 0,
+            isEnd: true
+          }));
+          gsap.to('#slider', {
+            opacity: 1,
+            duration: 0.3
+          });
+        }
+      });
+    }
+  }, [isLastVideo]);
 
   const handleProcess = (type, i) => {
     switch (type) {
@@ -124,17 +168,25 @@ const VideoCarousel = () => {
     }
   };
 
+  const handleIndicatorClick = (index) => {
+    if (index !== videoId) {
+      setVideo(prev => ({ ...prev, videoId: index, isEnd: true }));
+    }
+  };
+
   return (
-    <>
-      <div className="flex items-center">
-        {hightlightsSlides.map((list, i) => (
-          <div key={list.id} id="slider" className="pr-20 sm:pr-20">
-            <div className="
-              relative w-[88vw] h-[35vh]
-              sm:w-[70vw] sm:h-[50vh]
-              md:h-[70vh]
-            ">
-              <div className="w-full h-full flex items-center justify-center rounded-3xl overflow-hidden bg-black">
+    <div className="relative">
+      {/* Video Slider Container */}
+      <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-neutral-900">
+        <div className="flex" ref={sliderRef}>
+          {hightlightsSlides.map((list, i) => (
+            <div 
+              key={list.id} 
+              id="slider" 
+              className="min-w-full"
+            >
+              <div className="relative w-full aspect-[16/9] md:aspect-[21/9]">
+                {/* Video */}
                 <video
                   id="video"
                   playsInline
@@ -146,7 +198,7 @@ const VideoCarousel = () => {
                       ? handleProcess('video-end', i)
                       : handleProcess('video-last')
                   }
-                  className={`${list.id === 2 && 'translate-x-44'} pointer-events-none`}
+                  className="absolute inset-0 w-full h-full object-cover"
                   onPlay={() =>
                     setVideo(prev => ({ ...prev, isPlaying: true }))
                   }
@@ -154,56 +206,58 @@ const VideoCarousel = () => {
                 >
                   <source src={list.video} type="video/mp4" />
                 </video>
-              </div>
 
-              <div className="absolute top-12 left-[5%] z-10">
-                {list.textLists.map(text => (
-                  <p key={text} className="text-xl md:text-2xl font-medium">
-                    {text}
-                  </p>
-                ))}
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent pointer-events-none" />
+
+                {/* Text Overlay */}
+                <div className="absolute bottom-8 left-6 md:bottom-12 md:left-10 z-10 max-w-md">
+                  {list.textLists.map((text, idx) => (
+                    <p 
+                      key={text} 
+                      className={`
+                        text-white font-semibold leading-tight
+                        ${idx === 0 ? 'text-2xl md:text-4xl lg:text-5xl' : 'text-lg md:text-2xl lg:text-3xl text-white/90'}
+                      `}
+                    >
+                      {text}
+                    </p>
+                  ))}
+                </div>
+
+                {/* Video Number Badge */}
+                <div className="absolute top-6 right-6 md:top-8 md:right-8 z-10">
+                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-medium border border-white/20">
+                    {String(i + 1).padStart(2, '0')} / {String(hightlightsSlides.length).padStart(2, '0')}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* <div className="py-6 relative flex items-center justify-center mt-10">
-        <div className="flex items-center justify-center py-5 px-7 gap-2 bg-[var(--color-gray-300)] backdrop-blur rounded-full">
-          {videoRef.current.map((_, i) => (
-            <span
+      {/* Controls Bar */}
+      <div className="flex items-center justify-center gap-4 mt-6">
+        {/* Progress Indicators */}
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-neutral-100 rounded-full">
+          {hightlightsSlides.map((_, i) => (
+            <button
               key={i}
+              onClick={() => handleIndicatorClick(i)}
               ref={el => (videoDivRef.current[i] = el)}
-              className="w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
+              className="h-2 bg-neutral-300 rounded-full relative cursor-pointer transition-all duration-300 overflow-hidden"
+              style={{ width: '8px' }}
             >
               <span
                 ref={el => (videoSpanRef.current[i] = el)}
-                className="absolute h-full w-full rounded-full"
+                className="absolute left-0 top-0 h-full w-0 rounded-full bg-amber-500"
               />
-            </span>
+            </button>
           ))}
         </div>
-
-        <button className="
-          ml-4 p-4 rounded-full
-          bg-[var(--color-gray-300)]
-          backdrop-blur
-          flex items-center justify-center
-        ">
-          <img
-            src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
-            alt="control"
-            onClick={
-              isLastVideo
-                ? () => handleProcess('video-reset')
-                : !isPlaying
-                ? () => handleProcess('play')
-                : () => handleProcess('pause')
-            }
-          />
-        </button>
-      </div> */}
-    </>
+      </div>
+    </div>
   );
 };
 export default VideoCarousel;

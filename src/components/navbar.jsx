@@ -53,7 +53,7 @@ export default function Navbar() {
           className="h-24 w-auto object-contain"
         />
         <span className="hidden sm:block text-xl font-bold text-neutral-900 tracking-tight">
-          Classic<span className="text-amber-500">Shoes</span>
+          Sprint<span className="text-amber-500">Shoes</span>
         </span>
       </Link>
 

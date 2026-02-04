@@ -1,21 +1,24 @@
 import React from 'react'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { rightImg, watchImg } from '../utils';
 import VideoCarousel from './VideoCarousel';
+import { Play, ArrowRight, ChevronRight } from 'lucide-react';
 
 const Highlights = () => {
   useGSAP(() => {
     gsap.to('#title', {
       opacity: 1,
-      y: 0
+      y: 0,
+      duration: 1,
+      ease: 'power3.out'
     });
 
     gsap.to('.link', {
       opacity: 1,
       y: 0,
-      duration: 1.5,
-      stagger: 0.25,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
     });
   }, []);
 
@@ -23,53 +26,67 @@ const Highlights = () => {
     <section
       id="highlights"
       className="
-        w-screen overflow-hidden h-full
-        pt-16 pb-10 px-5
-        sm:pt-12 sm:pb-32 sm:px-10
+        w-full overflow-hidden
+        py-16 px-4
+        sm:py-20 sm:px-6
+        lg:py-8 lg:px-8
         bg-white
       "
     >
-      <div className="mx-auto relative max-w-[1120px]">
-        <div className="mb-12 w-full md:flex items-end justify-between">
-          <h1
-            id="title"
-            className="
-              text-[var(--color-gray)]
-              text-3xl font-medium mb-5
-              opacity-0 translate-y-20
-              md:text-5xl
-              lg:text-6xl lg:mb-0
-            "
-          >
-            Step Into Style.
-          </h1>
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <span className="inline-block text-sm font-semibold text-amber-600 uppercase tracking-wider mb-3">
+              New Collection
+            </span>
+            <h2
+              id="title"
+              className="
+                text-neutral-900
+                text-3xl sm:text-4xl lg:text-5xl
+                font-bold
+                opacity-0 translate-y-8
+              "
+            >
+              Step Into Style.
+            </h2>
+          </div>
 
-          <div className="flex flex-wrap items-end gap-5">
-            <p className="
+          <div className="flex flex-wrap items-center gap-3">
+            <button className="
               link
-              flex items-center gap-2
-              text-[var(--color-blue)]
-              text-xl cursor-pointer
-              opacity-0 translate-y-20
-              hover:underline
-              py-4
+              group
+              inline-flex items-center gap-2
+              px-5 py-2.5
+              bg-neutral-900 hover:bg-neutral-800
+              text-white
+              text-sm font-medium
+              rounded-full
+              opacity-0 translate-y-8
+              transition-all duration-200
+              hover:shadow-lg
             ">
-              Watch the Collection
-              <img src={watchImg} alt="watch" />
-            </p>
+              <Play className="w-4 h-4" fill="currentColor" />
+              Watch Collection
+            </button>
 
-            <p className="
+            <button className="
               link
-              flex items-center gap-2
-              text-[var(--color-blue)]
-              text-xl cursor-pointer
-              opacity-0 translate-y-20
-              hover:underline
-              py-4
+              group
+              inline-flex items-center gap-2
+              px-5 py-2.5
+              bg-white hover:bg-neutral-50
+              text-neutral-900
+              text-sm font-medium
+              rounded-full
+              border-2 border-neutral-200 hover:border-amber-500
+              opacity-0 translate-y-8
+              transition-all duration-200
             ">
               Shop Now
-              <img src={rightImg} alt="shop" />
-            </p>
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
 

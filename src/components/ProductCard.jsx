@@ -88,7 +88,7 @@ const ProductCard = ({
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">
             {isNew && (
-              <span className="px-3 py-1.5 text-xs font-bold bg-amber-500 text-neutral-900 rounded-full shadow-lg animate-bounce-in">
+              <span className="px-3 py-1.5 text-xs font-bold bg-neutral-900 text-white rounded-full shadow-lg animate-bounce-in">
                 NEW
               </span>
             )}
