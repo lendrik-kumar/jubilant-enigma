@@ -131,8 +131,8 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-bottom opacity-50 pointer-events-none"
         style={{
           backgroundImage: `url('https://plus.unsplash.com/premium_photo-1762745549473-a47f75a4946c?q=80&w=1625&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
-          // maskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
-          // WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
+          maskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
+          WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 60%)',
         }}
       />
 
